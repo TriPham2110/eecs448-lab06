@@ -60,13 +60,13 @@ void Test::test_5(){
   }
   q.dequeue();
   std::cout<<"peekFront should only peek at the front. ";
-  if(q.peekFront() == 5){
+  if(q.peekFront() == 6){
     std::cout<<"Test passed\n\n";
   }
   else{
     std::cout<<"Test failed\n\n";
   }
-  for(int i=5; i<9; i++){
+  for(int i=6; i<10; i++){
     q.dequeue();
   }
 }
@@ -108,19 +108,19 @@ void Test::test_8(){
 }
 
 void Test::test_9(){
-  for(int i=5; i<10; i++){
-    q.enqueue(i);
-  }
-  for(int i=5; i<10; i++){
-    q.dequeue();
-  }
-  std::cout<<"queue destructor should clear every item in the queue. ";
-  if(q.isEmpty()){
-    std::cout<<"Test passed\n\n";
+  q.enqueue(5);
+  q.enqueue(6);
+  q.enqueue(7);
+  q.dequeue();
+  q.dequeue();
+  std::cout<<"enqueued 5, 6, 7 and dequeued twice; peekFront returns: "<<q.peekFront()<<". ";
+  if(q.peekFront() == 7){
+    std::cout<<"Test passed (since peekFront returned 7)\n\n";
   }
   else{
-    std::cout<<"Test failed\n\n";
+    std::cout<<"Test failed (since peekFront did not return 7)\n\n";
   }
+  q.dequeue();
 }
 
 void Test::execute(){
