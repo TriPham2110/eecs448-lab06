@@ -1,0 +1,4 @@
+1. peekFront might be peeking at the back since we have m_back pointer in "Queue.h"
+2. if peekFront is correctly peeking at the front, then enqueue might be adding item like stack's push
+3. dequeue is not removing the front of the queue (potentially removing the back of the queue like stack's pop)
+4. valgrind runs fine (since I kept track of every enqueue and dequeue), but I do not think that guarantees the queue's destructor to be correctly defined
