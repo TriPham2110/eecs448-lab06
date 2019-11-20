@@ -2,50 +2,136 @@
 #include <string>
 #include <iostream>
 
-Test::Test(){}
+Test::Test(Queue q){
+  this->q = q;
+}
 
 Test::~Test(){}
 
-void Test::test_isEmpty(Queue q){
+void Test::test_1(){
+  std::cout<<"Default constructor should create empty queue. ";
   if(q.isEmpty()){
-    std::cout<<"Queue is empty\n";
+    std::cout<<"Test passed\n\n";
   }
   else{
-    std::cout<<"Queue is not empty\n";
+    std::cout<<"Test failed\n\n";
   }
 }
 
-void Test::test_enqueue(Queue q, int num){
-  q.enqueue(num);
-  if(q.isEmpty()){
-    std::cout<<"This should not be the case\n";
+void Test::test_2(){
+  q.enqueue(5);
+  std::cout<<"Enqueue one item should make queue non-empty. ";
+  if(!q.isEmpty()){
+    std::cout<<"Test passed\n\n";
   }
   else{
-    std::cout<<"Enqueuing a value makes queue not empty\n";
+    std::cout<<"Test failed\n\n";
   }
-  if(q.peekFront() == num){
-    std::cout<<"Enqueue "<<num<<" on empty queue works\n";
-  }
-  else{
-    std::cout<<"Queue currently has more than one element\n";
-  }
-}
-
-void Test::test_dequeue(Queue q){
   q.dequeue();
-  if(q.isEmpty()){
-    std::cout<<"Queue previously had one element so it should be empty after dequeuing\n";
+}
+
+void Test::test_3(){
+  q.enqueue(5);
+  std::cout<<"Enqueuing one item and peekFront should return that same item. ";
+  if(q.peekFront() == 5){
+    std::cout<<"Test passed\n\n";
   }
   else{
-    std::cout<<"Queue previously had more than one element so it is not empty after dequeuing\n";
+    std::cout<<"Test failed\n\n";
+  }
+  q.dequeue();
+}
+
+void Test::test_4(){
+  q.enqueue(5);
+  q.dequeue();
+  std::cout<<"Enqueuing one item and then dequeuing should return an empty queue. ";
+  if(q.isEmpty()){
+    std::cout<<"Test passed\n\n";
+  }
+  else{
+    std::cout<<"Test failed\n\n";
   }
 }
 
-void Test::test_peekFront(Queue q, int num){
-  if(q.peekFront() == num){
-    std::cout<<"peekFront method works when enqueuing the first element "<<num<<"\n";
+void Test::test_5(){
+  for(int i=5; i<10; i++){
+    q.enqueue(i);
+  }
+  q.dequeue();
+  std::cout<<"peekFront should only peek at the front. ";
+  if(q.peekFront() == 5){
+    std::cout<<"Test passed\n\n";
   }
   else{
-    std::cout<<"Something is off here\n";
+    std::cout<<"Test failed\n\n";
   }
+  for(int i=5; i<9; i++){
+    q.dequeue();
+  }
+}
+
+void Test::test_6(){
+  std::cout<<"peekFront should throw runtime_error on an empty queue. ";
+  try{
+    q.peekFront();
+    std::cout<<"Test failed\n\n";
+  }
+  catch(...){
+    std::cout<<"Test passed\n\n";
+  }
+}
+
+void Test::test_7(){
+  std::cout<<"dequeue should throw runtime_error on an empty queue. ";
+  try{
+    q.dequeue();
+    std::cout<<"Test failed\n\n";
+  }
+  catch(...){
+    std::cout<<"Test passed\n\n";
+  }
+}
+
+void Test::test_8(){
+  q.enqueue(5);
+  q.enqueue(6);
+  q.dequeue();
+  std::cout<<"dequeue should remove the front of the queue. ";
+  if(q.peekFront() == 6){
+    std::cout<<"Test passed\n\n";
+  }
+  else{
+    std::cout<<"Test failed\n\n";
+  }
+  q.dequeue();
+}
+
+void Test::test_9(){
+  for(int i=5; i<10; i++){
+    q.enqueue(i);
+  }
+  for(int i=5; i<10; i++){
+    q.dequeue();
+  }
+  std::cout<<"queue destructor should clear every item in the queue. ";
+  if(q.isEmpty()){
+    std::cout<<"Test passed\n\n";
+  }
+  else{
+    std::cout<<"Test failed\n\n";
+  }
+}
+
+void Test::execute(){
+  std::cout<<"Queue tester starts: \n\n";
+  test_1();
+  test_2();
+  test_3();
+  test_4();
+  test_5();
+  test_6();
+  test_7();
+  test_8();
+  test_9();
 }

@@ -5,13 +5,19 @@
 
 class Test{
   public:
-    Test();
+    Test(Queue q);
     ~Test();
-    void test_isEmpty(Queue q);
-    void test_enqueue(Queue q, int num);
-    void test_dequeue(Queue q);
-    void test_peekFront(Queue q, int num);
+    void test_1();
+    void test_2();
+    void test_3();
+    void test_4();
+    void test_5();
+    void test_6();
+    void test_7();
+    void test_8();
+    void test_9();
+    void execute();
   private:
-    Queue testQueue;
+    Queue q;
 };
 #endif

@@ -12,10 +12,8 @@
 int main()
 {
 	Queue q;
-	Test t;
-	t.test_isEmpty(q);
-	t.test_enqueue(q,5);
-	t.test_dequeue(q);
+	Test t(q);
+	t.execute();
 
 	return(0);
 }
